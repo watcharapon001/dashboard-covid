@@ -1,0 +1,91 @@
+<div class="toolbar" role="banner">
+  <img
+    width="40"
+    alt="Angular Logo"
+    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
+  />
+  <span>รายงานสถานการณ์ผู้ติดเชื้อ Covid 19  ของวันที่ {{dayinfo[0].update_date}}</span>
+</div>
+
+<div class="grid-container">
+  <div class="info-box1">
+    <h2>ผู้ติดเชื้อรายใหม่</h2>
+    <h1>+{{dayinfo[0].new_case}}</h1>
+  </div>
+  <div class="info-box2">
+    <h2>หายป่วยรายใหม่</h2>
+    <h1>+{{dayinfo[0].new_case_excludeabroad}}</h1>
+  </div>
+  <div class="info-box3">
+    <h2>เสียชีวิตรายใหม่</h2>
+    <h1>+{{dayinfo[0].new_death}}</h1>
+  </div>
+  <div class="info-box1">
+    <h2>ผู้ติดเชื้อรวม</h2>
+    <h1>{{dayinfo[0].total_case}}</h1>
+  </div>
+  <div class="info-box2">
+    <h2>หายป่วยทั้งหมด</h2>
+    <h1>{{dayinfo[0].total_case_excludeabroad}}</h1>
+  </div>
+  <div class="info-box3">
+    <h2>เสียชีวิตรวม</h2>
+    <h1>{{dayinfo[0].total_death}}</h1>
+  </div>
+</div>
+
+้<hr>
+<div *ngFor="let list_p of searchprovince" Order by list_p.new_case DESC>
+  <h3>จังหวัด {{list_p.province}}</h3>
+  <div class="grid-containers">
+    <div class="info-box">
+      <h2>ผู้ติดเชื้อรายใหม่</h2>
+      <h1>+{{list_p.new_case}}</h1>
+    </div>
+    <div class="info-box">
+      <h2>ผู้ติดเชื้อในประเทศ</h2>
+      <h1>+{{list_p.new_case_excludeabroad}}</h1>
+    </div>
+    <div class="info-box">
+      <h2>เสียชีวิตรายใหม่</h2>
+      <h1>+{{list_p.new_death}}</h1>
+    </div>
+    <div class="info-box">
+      <h2>ผู้ติดเชื้อรวม</h2>
+      <h1>{{list_p.total_case}}</h1>
+    </div>
+    <div class="info-box">
+      <h2>ผู้ติดเชื้อในประเทศรวม</h2>
+      <h1>{{list_p.total_case_excludeabroad}}</h1>
+    </div>
+    <div class="info-box">
+      <h2>เสียชีวิตรวม</h2>
+      <h1>{{list_p.total_death}}</h1>
+    </div>
+  </div>
+</div>
+<hr>
+
+<div>
+  <table>
+    <tr>
+      <th>ลำดับ</th>
+      <th>จังหวัด</th>
+      <th>ผู้ติดเชื้อรายใหม่</th>
+      <th>รายละเอียด</th>
+    </tr>
+    <tr *ngFor="let list of provinceinfo ; let num = index">
+      <td>{{num+1}}</td>
+      <td>{{list.province}}</td>
+      <td>{{list.new_case}}</td>
+      <td>
+        <div class="box">
+          <button (click)="buttonProvince(num)">รายละเอียด</button>
+        </div>
+
+      </td>
+    </tr>
+  </table>
+
+</div>
+<router-outlet></router-outlet>
